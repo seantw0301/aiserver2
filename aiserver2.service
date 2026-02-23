@@ -1,0 +1,22 @@
+[Unit]
+Description=AI Server 2 Service
+After=network.target redis.service
+Wants=redis.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+# 工作目錄將由安裝腳本自動設置
+WorkingDirectory=/opt/ai_server2/apiserver
+# Python解釋器路徑將由安裝腳本自動設置
+ExecStart=/usr/bin/python3 start_server.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=aiserver2
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# Logs and runtime files
+*.log
+
+# OS / Editor
+.DS_Store
+.vscode/
+
+# Generated test outputs and debug artifacts
+parse_results*.txt
+test_*output*.txt
+line_bot_log.txt
+
+# Build / packaging
+build/
+dist/
+*.egg-info/

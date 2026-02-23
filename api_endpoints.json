@@ -1,0 +1,1490 @@
+[
+  {
+    "method": "GET",
+    "path": "/",
+    "summary": "API首頁",
+    "description": "API首頁和端點列表",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/appointments/query",
+    "summary": "查詢可用預約時段和師傅",
+    "description": "查詢可用預約時段和師傅",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/AppointmentQuery"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/parse",
+    "summary": "自然語言解析",
+    "description": "解析客戶輸入的自然語言文字，提取預約資訊\n\n客戶可以輸入自然語言，例如：\n- \"我想要明天下午2點在西門預約鞋老師和川老師的90分鐘按摩，2位客人\"\n- \"今天晚上7點延吉店，豪老師，60分鐘，1人\"\n- \"8月16日上午10點，西門，遠老師，120分鐘按摩\"\n\n系統會自動解析並返回結構化的預約資訊。",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/NaturalLanguageRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NaturalLanguageResponse"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/array/{store_id}/{date}",
+    "summary": "獲取房間狀態數組表格",
+    "description": "獲取房間狀態數組表格",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/available/{store_id}/{date}/{time}",
+    "summary": "獲取指定時間的可用房間",
+    "description": "獲取指定時間的可用房間",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      },
+      {
+        "name": "time",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Time"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/detailed/{store_id}/{date}",
+    "summary": "獲取詳細房間狀態表格",
+    "description": "獲取詳細房間狀態表格",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/rooms/earliest-available",
+    "summary": "查詢最早可用房間時間",
+    "description": "查詢最早可用房間時間",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/RoomAvailabilityQuery"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/status/{store_id}/{date}",
+    "summary": "獲取指定店家指定日期的房間狀態表",
+    "description": "獲取指定店家指定日期的房間狀態表",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/status/{store_id}/{date}/{time}",
+    "summary": "獲取指定時間的房間狀態",
+    "description": "獲取指定時間的房間狀態",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      },
+      {
+        "name": "time",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Time"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/rooms/summary/{store_id}/{date}",
+    "summary": "獲取房間使用率摘要",
+    "description": "獲取房間使用率摘要",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      },
+      {
+        "name": "date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/schedule/date/{target_date}",
+    "summary": "獲取指定日期所有師傅的班表",
+    "description": "獲取指定日期所有師傅的班表 (5分鐘間隔)",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "target_date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Target Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/schedule/staff/{name}/{target_date}",
+    "summary": "獲取指定師傅指定日期的班表",
+    "description": "獲取指定師傅指定日期的班表 (5分鐘間隔)",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Name"
+        }
+      },
+      {
+        "name": "target_date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Target Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/schedule/staff/{name}/{target_date}/labels",
+    "summary": "獲取帶時間標籤的班表",
+    "description": "獲取帶時間標籤的班表 (用於除錯和展示)",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Name"
+        }
+      },
+      {
+        "name": "target_date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Target Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/staffs",
+    "summary": "獲取所有師傅列表",
+    "description": "獲取所有師傅列表",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/staffs/name/{name}",
+    "summary": "根據姓名獲取師傅資訊",
+    "description": "根據姓名獲取師傅資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Name"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/staffs/{staff_id}",
+    "summary": "根據ID獲取師傅資訊",
+    "description": "根據ID獲取師傅資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "staff_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Staff Id"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/stores",
+    "summary": "獲取所有店家列表",
+    "description": "獲取所有店家列表",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/stores",
+    "summary": "創建新店家",
+    "description": "創建新店家",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/StoreCreate"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "201": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/stores/name/{name}",
+    "summary": "根據名稱獲取店家資訊",
+    "description": "根據名稱獲取店家資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Name"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/stores/search/{keyword}",
+    "summary": "搜索店家",
+    "description": "搜索店家",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "keyword",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Keyword"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/stores/summary",
+    "summary": "獲取店家摘要資訊",
+    "description": "獲取店家摘要資訊",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "DELETE",
+    "path": "/stores/{store_id}",
+    "summary": "刪除店家",
+    "description": "刪除店家",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/stores/{store_id}",
+    "summary": "根據ID獲取店家資訊",
+    "description": "根據ID獲取店家資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "path": "/stores/{store_id}",
+    "summary": "更新店家資訊",
+    "description": "更新店家資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "store_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Store Id"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/StoreUpdate"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks",
+    "summary": "獲取所有預約列表",
+    "description": "獲取所有預約列表（支援分頁）",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "maximum": 1000,
+          "minimum": 1,
+          "default": 100,
+          "title": "Limit"
+        }
+      },
+      {
+        "name": "offset",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "title": "Offset"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/tasks",
+    "summary": "創建新預約",
+    "description": "創建新預約",
+    "tags": [],
+    "parameters": [],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/TaskCreate"
+          }
+        }
+      }
+    },
+    "responses": {
+      "201": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/customer/{customer_name}",
+    "summary": "根據客戶名稱獲取預約記錄",
+    "description": "根據客戶名稱獲取預約記錄",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "customer_name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Customer Name"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/date/{target_date}",
+    "summary": "獲取指定日期的所有預約",
+    "description": "獲取指定日期的所有預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "target_date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Target Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/search/{keyword}",
+    "summary": "搜索預約",
+    "description": "搜索預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "keyword",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Keyword"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/staff/{staff_name}",
+    "summary": "獲取指定師傅的預約",
+    "description": "獲取指定師傅的預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "staff_name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Staff Name"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/staff/{staff_name}/{target_date}",
+    "summary": "獲取指定師傅指定日期的預約",
+    "description": "獲取指定師傅指定日期的預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "staff_name",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Staff Name"
+        }
+      },
+      {
+        "name": "target_date",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "title": "Target Date"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/statistics",
+    "summary": "獲取預約統計資訊",
+    "description": "獲取預約統計資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "start_date",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "開始日期 (YYYY-MM-DD)",
+          "title": "Start Date"
+        },
+        "description": "開始日期 (YYYY-MM-DD)"
+      },
+      {
+        "name": "end_date",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "結束日期 (YYYY-MM-DD)",
+          "title": "End Date"
+        },
+        "description": "結束日期 (YYYY-MM-DD)"
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "DELETE",
+    "path": "/tasks/{task_id}",
+    "summary": "刪除預約",
+    "description": "刪除預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "task_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Task Id"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/tasks/{task_id}",
+    "summary": "根據ID獲取預約資訊",
+    "description": "根據ID獲取預約資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "task_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Task Id"
+        }
+      }
+    ],
+    "requestBody": {},
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "path": "/tasks/{task_id}",
+    "summary": "更新預約資訊",
+    "description": "更新預約資訊",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "task_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Task Id"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/TaskUpdate"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "PUT",
+    "path": "/tasks/{task_id}/confirm",
+    "summary": "師傅確認預約",
+    "description": "師傅確認預約",
+    "tags": [],
+    "parameters": [
+      {
+        "name": "task_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "title": "Task Id"
+        }
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/TaskConfirm"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Successful Response",
+        "content": {
+          "application/json": {
+            "schema": {}
+          }
+        }
+      },
+      "422": {
+        "description": "Validation Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/HTTPValidationError"
+            }
+          }
+        }
+      }
+    }
+  }
+]
