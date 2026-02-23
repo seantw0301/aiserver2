@@ -18,6 +18,7 @@ api/
 core/                    # 基礎資料與核心業務邏輯
 modules/                 # 領域模組（預約、多語言、整合等）
 ai_parser/               # 自然語言解析子系統
+scripts/                 # 維運/除錯/驗證工具腳本
 app.py                   # 薄入口（暴露 app + 啟動）
 start_server.py          # 薄入口（僅啟動）
 ```
@@ -55,6 +56,7 @@ python app.py
 
 - [模組化遷移說明](docs/MODULARIZATION.md)
 - [清理與刪除策略](docs/CLEANUP.md)
+- [腳本分層說明](scripts/README.md)
 
 ## API 文件
 

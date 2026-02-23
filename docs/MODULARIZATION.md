@@ -31,6 +31,15 @@
 
 - 新增 `pydantic-settings`，支援型別化環境設定。
 
+### 5. 根目錄腳本分層
+
+- 將工具腳本依用途拆分到 `scripts/`：
+  - `scripts/debug/`（`debug_*.py`）
+  - `scripts/verify/`（`verify_*.py`）
+  - `scripts/check/`（`check_*.py`）
+  - `scripts/tools/`（批次測試、模擬、範例）
+- 使根目錄聚焦在服務入口、設定與核心模組。
+
 ## 效益
 
 - 降低重複程式碼與設定分散風險。
