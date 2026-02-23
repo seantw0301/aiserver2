@@ -108,24 +108,19 @@
 
 ---
 
-## 自動化測試
+## API 驗證
 
-### 運行完整測試套件
+### 手動驗證黑名單邏輯
 ```bash
-cd /Volumes/aiserver2
-python3 test_blacklist_api.py
+curl "http://localhost:8000/api/rooms/checkRoomCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=normal_user"
+curl "http://localhost:8000/api/rooms/checkRoomCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=blacklist_user"
+curl "http://localhost:8000/api/rooms/checkStaffCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=normal_user"
+curl "http://localhost:8000/api/rooms/checkStaffCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=blacklist_user"
 ```
 
-**預期結果**：所有 5 個測試通過
-```
-✅ checkRoomCanBook - 正常用戶
-✅ checkRoomCanBook - 超級黑名單用戶
-✅ checkStaffCanBook - 正常用戶
-✅ checkStaffCanBook - 超級黑名單用戶
-✅ 缺少 lineid 參數
-
-總計: 5/5 測試通過
-```
+**預期結果**：
+- 正常用戶：回傳可預約結果
+- 黑名單用戶：回傳 403 或禁止預約訊息
 
 ---
 
@@ -284,7 +279,6 @@ tail -f /Volumes/aiserver2/server.log
 部署前請確認以下文檔已審閱：
 
 - [ ] `API_UPDATES_20251216.md` - API 詳細文檔
-- [ ] `BLACKLIST_API_TESTING.md` - 測試命令
 - [ ] `IMPLEMENTATION_SUMMARY.md` - 實現細節
 - [ ] `QUICK_REFERENCE.md` - 快速參考
 - [ ] `DEPLOYMENT_CHECKLIST.md` - 本文件

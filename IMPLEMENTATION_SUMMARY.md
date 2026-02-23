@@ -103,16 +103,11 @@ if blacklist_manager.is_super_blacklist(lineid):
 
 ---
 
-## 測試覆蓋
+## 驗證覆蓋
 
-### 測試腳本位置
+### 驗證方式
 
-| 文件 | 說明 |
-|------|------|
-| `/Volumes/aiserver2/test_blacklist_api.py` | Python 測試腳本，包含 5 個測試用例 |
-| `/Volumes/aiserver2/BLACKLIST_API_TESTING.md` | curl 命令和 Python 示例 |
-
-### 測試用例
+以 API 請求驗證以下案例：
 
 1. ✅ checkRoomCanBook - 正常用戶
 2. ✅ checkRoomCanBook - 超級黑名單用戶
@@ -120,12 +115,11 @@ if blacklist_manager.is_super_blacklist(lineid):
 4. ✅ checkStaffCanBook - 超級黑名單用戶
 5. ✅ 缺少 lineid 參數的錯誤處理
 
-### 運行測試
+### 驗證命令
 
 ```bash
-# 確保 API 服務器運行
-cd /Volumes/aiserver2
-python3 test_blacklist_api.py
+curl "http://localhost:8000/api/rooms/checkRoomCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=normal_user"
+curl "http://localhost:8000/api/rooms/checkRoomCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1&lineid=blacklist_user"
 ```
 
 ---
@@ -140,13 +134,7 @@ python3 test_blacklist_api.py
    - 返回示例
    - 黑名單檢查邏輯
 
-2. **BLACKLIST_API_TESTING.md**
-   - curl 測試命令
-   - Python 測試代碼
-   - 參數表格
-   - 調試提示
-
-3. **本文件 (IMPLEMENTATION_SUMMARY.md)**
+2. **本文件 (IMPLEMENTATION_SUMMARY.md)**
    - 實現總結
    - 技術細節
    - 升級指南
@@ -275,9 +263,7 @@ python3 test_blacklist_api.py
 │       └── rooms.py (已修改)
 ├── core/
 │   └── blacklist.py (已使用，無修改)
-├── test_blacklist_api.py (新增)
 ├── API_UPDATES_20251216.md (新增)
-├── BLACKLIST_API_TESTING.md (新增)
 └── IMPLEMENTATION_SUMMARY.md (本文件)
 ```
 
@@ -287,7 +273,7 @@ python3 test_blacklist_api.py
 
 如有問題或需要進一步調整，請：
 1. 檢查 API 文檔：`API_UPDATES_20251216.md`
-2. 運行測試：`python3 test_blacklist_api.py`
+2. 直接呼叫 API 驗證案例
 3. 查看日誌：API 服務器日誌文件
 
 ---

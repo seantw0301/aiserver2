@@ -49,5 +49,4 @@
 ## 建議下一步（可選）
 
 - 將根目錄工具腳本依用途搬移至 `scripts/`（debug/verify/migration）。
-- 增加 `tests/bootstrap/` 針對 `create_app()` 與 `settings` 的單元測試。
 - 導入 `pre-commit`（format/lint/import sort）。

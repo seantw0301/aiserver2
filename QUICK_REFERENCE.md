@@ -170,9 +170,7 @@ A: 只阻止 `checkRoomCanBook` 和 `checkStaffCanBook`，其他 API 不受影�
 | 文檔 | 內容 |
 |------|------|
 | `API_UPDATES_20251216.md` | 詳細 API 文檔 |
-| `BLACKLIST_API_TESTING.md` | 測試命令和示例 |
 | `IMPLEMENTATION_SUMMARY.md` | 完整實現細節 |
-| `test_blacklist_api.py` | 自動化測試腳本 |
 
 ---
 

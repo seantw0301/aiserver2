@@ -145,19 +145,19 @@ curl "http://api.esim168.com:5001/rooms/checkRoomCanBook?date=2025-12-16&time=15
 | 房間不足（未指定店家） | "沒有足夠的房間可以預約" |
 | 其他錯誤 | "檢查時發生錯誤: {錯誤詳情}" |
 
-## 測試
+## 驗證
 
-可以使用提供的測試腳本 `test_checkRoomCanBook.py` 進行功能測試：
+可直接使用 API 請求驗證功能：
 
 ```bash
-python test_checkRoomCanBook.py
+curl "http://127.0.0.1:8000/rooms/checkRoomCanBook?date=2025-12-20&time=14:00&guest=2&duration=90&storeid=1"
 ```
 
-該腳本會測試多個使用案例，包括：
+建議至少覆蓋以下案例：
 - 正常預約請求
-- 邊界情況測試
-- 不同日期格式
-- 錯誤輸入驗證
+- 邊界時間（接近開店/閉店）
+- 不同日期格式與非法時間格式
+- 無效輸入（guest、duration、storeid）
 
 ## 注意事項
 
